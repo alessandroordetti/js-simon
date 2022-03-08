@@ -7,12 +7,22 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 
 let randomNumbers = document.getElementById('random-numbers');
 
+let generatedNumbers;
+
+let computerNumberArray = [];
+
+let userNumberArray = [];
+
 /* Faccio comparire a schermo 5 numeri casuali */
 for (let i = 0; i < 5; i++){
-    randomNumbers.innerHTML += Math.floor(Math.random() * 50) + 1 + " ";
+    generatedNumbers = parseInt(Math.floor(Math.random() * 50) + 1);
+
+    randomNumbers.innerHTML += generatedNumbers + " ";
+
+    computerNumberArray.push(generatedNumbers);
 }
 
-console.log(randomNumbers);
+console.log(computerNumberArray);
 
 /* Settiamo una costante per il tempo */
 const myTimeout = 3;
@@ -33,6 +43,24 @@ function howManyNumbers() {
 
         let userAnswer = parseInt(prompt('Che numeri hai visto sullo schermo? Inseriscili qui!'));
 
+        userNumberArray.push(userAnswer);
+
         document.getElementById('user-answer').innerHTML += " " + userAnswer;
+
+        /* Una volta inseriti i numeri dall'utente, quelli scomparsi ritornano visibili */
+        randomNumbers.classList.remove('d-none');
+    }
+
+    console.log(userNumberArray);
+
+    for (let i = 0; i < userNumberArray.length; i++) {
+        if (computerNumberArray.includes(userNumberArray[i])){
+            result.innerHTML = `Hai indovinato i seguenti numeri: ${userNumberArray[i]}`;
+        } 
     }
 }
+
+let result = document.getElementById('result');
+/* Adesso dobbiamo confrontare gli elementi di userNumberArray e computerNumberArray */
+
+
