@@ -9,7 +9,30 @@ let randomNumbers = document.getElementById('random-numbers');
 
 /* Faccio comparire a schermo 5 numeri casuali */
 for (let i = 0; i < 5; i++){
-    randomNumbers.innerHTML += Math.floor(Math.random() * 50) + " ";
+    randomNumbers.innerHTML += Math.floor(Math.random() * 50) + 1 + " ";
 }
 
 console.log(randomNumbers);
+
+/* Settiamo una costante per il tempo */
+const myTimeout = 3;
+
+setTimeout (howManyNumbers, myTimeout * 1000);
+
+setTimeout (numbersDisappear, myTimeout*700)
+
+/* Funzione che fa scomparire i numeri prima del prompt */
+function numbersDisappear () {
+    randomNumbers.classList.add('d-none');
+}
+
+/* Funzione che chiede all'utentente di scrivere i numeri che visualizzato */
+function howManyNumbers() {
+    
+    for (let i = 0; i < 5; i++){
+
+        let userAnswer = parseInt(prompt('Che numeri hai visto sullo schermo? Inseriscili qui!'));
+
+        document.getElementById('user-answer').innerHTML += " " + userAnswer;
+    }
+}
